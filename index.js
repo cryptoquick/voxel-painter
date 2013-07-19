@@ -17,7 +17,7 @@ module.exports = function() {
   var CubeMaterial = THREE.MeshBasicMaterial
   var cube = new THREE.CubeGeometry( 50, 50, 50 )
   var wireframe = true, fill = true
-  
+
   var colors = ['2ECC71', '3498DB', '34495E', 'E67E22', 'ECF0F1'].map(function(c) { return hex2rgb(c) })
   for( var c = 0; c < 5; c++ ) {
     addColorToPalette(c)
@@ -26,7 +26,7 @@ module.exports = function() {
   showWelcome()
   init()
   raf(window).on('data', render)
-  
+
   function showWelcome() {
     var seenWelcome = localStorage.getItem('seenWelcome')
     if (seenWelcome) return
@@ -37,11 +37,11 @@ module.exports = function() {
   exports.viewInstructions = function() {
     $('#welcome').modal()
   }
-  
+
   exports.about = function() {
     $('#about').modal()
   }
-  
+
   exports.share = function() {
     var fakeGame = {
       renderer: {
@@ -82,13 +82,13 @@ module.exports = function() {
       $('#share .modal-footer .btn-cancel').click()
     }
   }
-  
+
   // bunny
   exports.loadExample = function() {
     window.location.replace( '#A/bfhkSfdihfShaefShahfShahhYfYfYfSfSfSfYhYhYhahjSdechjYhYhYhadfQUhchfYhYhSfYdQYhYhaefQYhYhYhYhSjcchQYhYhYhYhSfSfWehSfUhShecheQYhYhYhYhachYhYhafhYhahfShXdfhShcihYaVhfYmfbihhQYhYhYhaddQShahfYhYhYhShYfYfYfafhQUhchfYhYhYhShechdUhUhcheUhUhcheUhUhcheUhUhcheUhUhWehUhUhcfeUhUhcfeUhUhcfeUhUhcfeUhUhehehUhUhcheUhUhcheUhUhcheUhUhWehUhUhcfeUhUhcfeUhUhcfeUhUhcfeUhUhWffUhWheQYhYhYhYhachQYiYhYhShYfYfYfYfShYhYhYhYhadeakiQSfSfSfUfShShShUfSfSfSfUfShShShUfSfSfSfcakQShShWfeQShShWeeQUhWfhUhShUfWjhQUfUfUfWfdQShShShWkhQUfUfUfchjQYhYhYhYhUfYfYfYeYhUfYhYhcifQYfYfYfYeQcffQYhYhYiYiYfcdhckjUfUfZfeYcciefhleiYhYcYhcfhYhcfhYhcifYhcfhYhcfhYhYcYh')
     buildFromHash()
   }
-  
+
   exports.browseTwitter = function() {
     $('#browse').modal()
     var content = $('#browse .demo-browser-content')
@@ -105,13 +105,13 @@ module.exports = function() {
       content.append('<img src="' + url + '"/>')
     })
   }
-  
+
   exports.browseRecent = function() {
     $('#browse').modal()
     var content = $('#browse .demo-browser-content')
     content.html('<p>Loading...</p>')
-    request({ 
-        url: 'http://maxcors.jit.su/http://max.ic.ht/critters/_all_docs?include_docs=true', 
+    request({
+        url: 'http://maxcors.jit.su/http://max.ic.ht/critters/_all_docs?include_docs=true',
         json: true
       }, function(err, resp, data) {
       if (err) {
@@ -126,7 +126,7 @@ module.exports = function() {
       })
     })
   }
-  
+
   exports.getProxyImage = function(imgURL, cb) {
     var proxyURL = 'http://maxcors.jit.su/' + imgURL // until imgur gets CORS on GETs
     var img = new Image()
@@ -198,7 +198,7 @@ module.exports = function() {
   }
 
   function v2h(value) {
-    value = parseInt(value).toString(16)
+    value = parseInt(value, 10).toString(16)
     return value.length < 2 ? '0' + value : value
   }
   function rgb2hex(rgb) {
@@ -298,9 +298,9 @@ module.exports = function() {
     color = idx
     brush.children[0].material.color.setRGB(colors[idx][0], colors[idx][1], colors[idx][2])
   }
-  
+
   function bindEventsAndPlugins() {
-    
+
     $('#browse img').live('click', function(ev) {
       var url = $(ev.target).attr('src')
       $('#browse button').click()
@@ -308,7 +308,7 @@ module.exports = function() {
         importImage(img)
       })
     })
-    
+
     $('#shareButton').click(function(e) {
       e.preventDefault()
       exports.share()
@@ -338,7 +338,7 @@ module.exports = function() {
         }, 0)
       }
     })
-    
+
     // Todo list
     $(".todo li").click(function() {
         $(this).toggleClass("todo-done");
@@ -383,7 +383,6 @@ module.exports = function() {
   }
 
   function init() {
-    
     bindEventsAndPlugins()
     setupImageDropImport(document.body)
 
@@ -827,10 +826,10 @@ module.exports = function() {
     ctx.putImageData(imageData, 0, 0)
 
     onWindowResize()
-    
+
     return canvas
   }
-  
+
   function exportImage(width, height) {
     var canvas = getExportCanvas(width, height)
     var image = new Image
@@ -929,5 +928,5 @@ module.exports = function() {
     raycaster = projector.pickingRay( mouse2D.clone(), camera )
     renderer.render( scene, camera )
   }
-  
+
 }
