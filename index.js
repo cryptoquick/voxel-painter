@@ -356,7 +356,7 @@ module.exports = function() {
         max: 4,
         value: 1,
         orientation: "horizontal",
-        range: "min",
+        range: "min"
     });
 
     // JS input/textarea placeholder
@@ -634,20 +634,15 @@ module.exports = function() {
       case 17: isCtrlDown = true; break
       case 18: isAltDown = true; break
     }
-
   }
 
   function onDocumentKeyUp( event ) {
-
     switch( event.keyCode ) {
-
       case 16: isShiftDown = false; break
       case 17: isCtrlDown = false; break
       case 18: isAltDown = false; break
-
     }
   }
-
 
   function buildFromHash(hashMask) {
 
@@ -739,36 +734,27 @@ module.exports = function() {
         data.push( parseInt( code, 2 ) )
 
         if ( current.x != last.x ) {
-
           data.push( current.x - last.x + 32 )
           last.x = current.x
-
         }
 
         if ( current.y != last.y ) {
-
           data.push( current.y - last.y + 32 )
           last.y = current.y
-
         }
 
         if ( current.z != last.z ) {
-
           data.push( current.z - last.z + 32 )
           last.z = current.z
-
         }
 
         if ( current.c != last.c ) {
-
           data.push( current.c - last.c + 32 )
           last.c = current.c
-
         }
-
       }
-
     }
+
     data = encode( data )
 
     var cData = '';
@@ -902,25 +888,19 @@ module.exports = function() {
   // https://gist.github.com/665235
 
   function decode( string ) {
-
     var output = []
     string.split('').forEach( function ( v ) { output.push( "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".indexOf( v ) ) } )
     return output
-
   }
 
   function encode( array ) {
-
     var output = ""
     array.forEach( function ( v ) { output += "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charAt( v ) } )
     return output
-
   }
 
   function save() {
-
     window.open( renderer.domElement.toDataURL('image/png'), 'mywindow' )
-
   }
 
   function render() {
@@ -928,5 +908,4 @@ module.exports = function() {
     raycaster = projector.pickingRay( mouse2D.clone(), camera )
     renderer.render( scene, camera )
   }
-
 }
